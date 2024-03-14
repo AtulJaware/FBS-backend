@@ -1,6 +1,7 @@
 package com.fbs.User.service;
 
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +29,19 @@ public class PassengerService {
 	public Passengers logIn(String username, String password) {
 
 		Passengers passenger = passengerRepo.findByUsername(username)
-				.orElseThrow(() -> new PassengerNotFoundException("Invalid password or username"));
+				.orElseThrow(() -> new PassengerNotFoundException("User Not found with username "+username));
 
 		if (!passenger.getPassword().equals(password)) {
-			throw new PassengerNotFoundException("Invalid password or username");
+			throw new PassengerNotFoundException("Invalid password");
 		}
 
 		return passenger;
 
 	}
 	
-	
+	public List<Passengers> getAllPassenger(){
+		return passengerRepo.findAll();
+	}
 	public Passengers addPassenger(Passengers passenger) {
 		return passengerRepo.save(passenger);
 	}

@@ -1,5 +1,7 @@
 package com.fbs.User.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,12 @@ public class PassengerController {
 		Passengers passenger = service.logIn(username, password);
 
 		return new ResponseEntity<>(passenger, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAll")
+	public ResponseEntity<Object> getAll (){
+		List<Passengers> list = service.getAllPassenger();
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")

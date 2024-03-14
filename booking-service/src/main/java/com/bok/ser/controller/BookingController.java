@@ -43,7 +43,7 @@ public class BookingController {
 		bookingFlight.setPhoneNumber(user.getPhoneNumber());
 		bookingFlight.setBookingFlightDetailsId(user.getBookingFlightDetailsId());
 		
-		Flight flight = restTemplate.getForEntity("http://localhost:8100/flight/get/"+flightId, Flight.class).getBody();
+		Flight flight = restTemplate.getForEntity("http://localhost:8281/flight/get/"+flightId, Flight.class).getBody();
 		
 		bookingFlight.setFlightId(flight.getId());
 		bookingFlight.setFlightName(flight.getFlightName());
